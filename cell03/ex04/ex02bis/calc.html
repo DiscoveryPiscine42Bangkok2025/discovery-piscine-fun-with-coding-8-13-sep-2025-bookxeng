@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+    body {
+      margin: 0;
+      height: 100vh; 
+      display: flex;
+      justify-content: center; 
+      align-items: center;     
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+    input, select {
+      margin: 5px;
+      padding: 8px;
+      font-size: 16px;
+    }
+  </style>
+<script src="jQuery.js"></script>
+<script>
+
+$(document).ready(function() {
+    
+    function calcMath() {
+        var x = parseInt($("#firstNum").val(), 10);
+        var y = parseInt($("#secNum").val(), 10);
+        var selection = $("#fallDown").val();
+        var z;
+
+        if (isNaN(x) || isNaN(y)) {
+            alert("Please enter valid numbers!");
+            return;
+        }
+
+        if ((selection === "divi" || selection === "mod") && y === 0) {
+            alert("It's over 9000!");
+            console.log("It's over 9000!");
+            return;
+        }
+
+        switch(selection) {
+            case "add": z = x + y; break;
+            case "less": z = x - y; break;
+            case "multi": z = x * y; break;
+            case "divi": z = x / y; break;
+            case "mod": z = x % y; break;
+            default:
+                alert("Please select an operation!");
+                return;
+        }
+
+        if (x >= 0 && y >= 0) {
+            $("#result").text("The result is " + z + ".");
+            alert("The result is " + z + ".");
+            console.log("The result is " + z + ".");
+        } else {
+            alert("Error :(");
+        }
+    }
+
+    $("input[type='submit']").click(function(e){
+        e.preventDefault(); 
+        calcMath();
+    });
+
+    setTimeout(function() {
+        alert("Please, use me");
+    }, 30000);
+
+});
+</script>
+
+</head>
+<body>
+	<div class="container">
+		<p>Calculator</p>
+		<input type="text" id="firstNum" pattern="[0-9]+" />
+		<select id="fallDown">
+			<option>Choose</option>
+			<option value="add" id="add">+</option>
+			<option value="less" id="less">-</option>
+			<option value="multi" id="multi">*</option>
+			<option value="divi" id="divi">/</option>
+			<option value="mod" id="mod">%</option>
+		</select>
+		<input type="text" id="secNum" pattern="[0-9]+" /><br>
+		<input type="submit" value="Try Me!" onclick="calcMath()">
+		<p id="result"></p>
+	</div>
+</body>
+</html>
