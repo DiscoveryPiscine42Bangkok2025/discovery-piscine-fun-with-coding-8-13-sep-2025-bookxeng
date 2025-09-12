@@ -1,29 +1,42 @@
-var backgrounds = ["green", "blue", "red"];
-var width = 200;
-var height = 200;
+$(document).ready(function () {
+    let i = 0;
+    const colors = ['red', 'green', 'blue'];
 
-$(document).ready(function() {
-    var $balloon = $("#balloon");
+    $("#balloon").on("click", function () {
+        let balloon = $(this);
+        let newSize = balloon.height() + 10;
 
-    $balloon.click(function() {
-        var colorIdx = $balloon.data("colorIdx") || 0;
-        $balloon.css("background-color", backgrounds[colorIdx % backgrounds.length]);
-        $balloon.data("colorIdx", colorIdx + 1);
-
-        if(width < 420 && height < 420) {
-            width += 10;
-            height += 10;
-            $balloon.css({
-                width: width + "px",
-                height: height + "px"
+        if (newSize > 420) {
+            balloon.css({
+                width: "200px",
+                height: "200px",
+                backgroundColor: colors[0]
             });
-        } else {
-            width = 200;
-            height = 200;
-            $balloon.css({
-                width: width + "px",
-                height: height + "px"
-            });
+            i = 0;
+            return;
         }
+
+        balloon.css({
+            width: newSize + "px",
+            height: newSize + "px",
+            backgroundColor: colors[(i + 1) % colors.length]
+        });
+
+        i = (i + 1) % colors.length;
+    });
+
+    $("#balloon").on("mouseleave", function () {
+        let balloon = $(this);
+        let newSize = balloon.height() - 5;
+
+        if (newSize < 200) newSize = 200;
+
+        i = (i - 1 + colors.length) % colors.length;
+
+        balloon.css({
+            width: newSize + "px",
+            height: newSize + "px",
+            backgroundColor: colors[i]
+        });
     });
 });
