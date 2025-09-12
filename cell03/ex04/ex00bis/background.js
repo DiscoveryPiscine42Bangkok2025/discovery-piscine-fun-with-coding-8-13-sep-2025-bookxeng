@@ -9,6 +9,6 @@ function randomColors() {
 
 $(document).ready(function(){
     $("button").click(function(){
-        document.body.style.backgroundColor = randomColors();
+        $("body").css("background-color", randomColors())
     });
 });

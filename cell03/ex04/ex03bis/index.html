@@ -3,121 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To Do List</title>
-  <script src="jQuery.js"></script>
-  <script src="todo.js" defer></script>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
+	<title>Todo</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="todo.js"></script>
+	<link rel="stylesheet" href="">
+	<style>
+		:root {
+			--white: #ffffff;
+			--black: #000000;
+			--red: #FA2742;
+      --gray: #9c9c9c;
+		}
 
-    body {
-      background-color: silver;
-    }
+		body {
+			background-color: var(--white);
+			color: var(--black);
+			margin: 0;
+		}
 
-    .ft_list {
-      background-color: rgb(255, 255, 255);
-      width: 500px;
-      height: calc(100vh - 100px);
-      border-radius: 10px;
-      margin: 50px auto;
-      padding: 4vh 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+		button {
+			background-color: var(--gray);
+			color: var(--black);
+			width: 6vh;
+			height: 3vh;
+			outline: none;
+			font-size: 2vh;
+			border: none;
+		}
 
-    .title {
-      color: #000000;
-      width: 80%;
-    }
+		button:active {
+			background-color: #f2f5ec;
+		}
 
-    .form {
-      width: 80%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+		h1 {
+			font-size: 5vh;
+			color: var(--black);
+			margin-bottom: 0;
+		}
 
-    input:focus {
-      outline: none;
-    }
+		hr {
+			width: 60vw;
+		}
 
-    .text {
-      width: 85%;
-      background-color: transparent;
-      height: 30px;
-      border: none;
-      border-bottom: 2px solid gray;
-      padding: 10px;
-      color: rgb(0, 0, 0);
-    }
+		#ft_list {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			text-align: center;
+			align-items: center;
+			justify-content: start;
+			height: 99vh;
+			width: auto;
+		}
 
-    .text::placeholder {
-      padding: 10px;
-      color: darkgray;
-      font-weight: 600;
-      opacity: 0.7;
-    }
+		#todo {
+			margin-top: 2vh;
+		}
 
-    .add {
-      width: 15%;
-      background-color: rgb(0, 0, 0);
-      color: rgb(255, 255, 255);
-      border: none;
-      border-radius: 5px;
-      font-size: 18px;
-      padding: 8px;
-      margin: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .add:active {
-      color: #000000;
-    }
-
-    .list {
-      width: 70%;
-      height: 320px;
-      list-style: none;
-      overflow: hidden;
-      display: flex;
-      justify-content: flex-end;
-      flex-direction: column-reverse;
-      padding: 0;
-    }
-
-    button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-    }
-
-    button:focus {
-      outline: none;
-    }
-
-    .list-element {
-      color: #808080;
-      font-weight: 600;
-      opacity: 1;
-    }
-
-    .done {
-      opacity: 0.6;
-    }
-  </style>
+		.todo {
+			font-size: 3vh;
+			padding: 0.5vh;
+		}
+	</style>
 </head>
 <body>
-  <div class="ft_list">
-    <h1 class="title">To Do list</h1>
-    <div class="form">
-      <input type="text" id="objective" class="text" placeholder="to do" autocomplete="off" maxlength="64">
-      <button class="add">ADD</button>
-    </div>
-    <ul id="list"></ul>
-  </div>
+	<div id="ft_list">
+		<h1>Todo List</h1>
+		<hr>
+		<button id="new">New</button>
+		<div id="todo"></div>
+	</div>
 </body>
 </html>

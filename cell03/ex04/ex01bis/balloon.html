@@ -5,8 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Balloon</title>
   <link rel="stylesheet" href="balloon.css">
-  <script src="jQuery.js"></script>
-  <script src="balloon.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+    let i = 0;
+    const colors = ['red', 'green', 'blue'];
+
+    $("#balloon").on("click", function () {
+        let balloon = $(this);
+        let newSize = balloon.height() + 10;
+
+        if (newSize > 420) {
+            balloon.css({
+                width: "200px",
+                height: "200px",
+                backgroundColor: colors[0]
+            });
+            i = 0;
+            return;
+        }
+
+        balloon.css({
+            width: newSize + "px",
+            height: newSize + "px",
+            backgroundColor: colors[(i + 1) % colors.length]
+        });
+
+        i = (i + 1) % colors.length;
+    });
+
+    $("#balloon").on("mouseleave", function () {
+        let balloon = $(this);
+        let newSize = balloon.height() - 5;
+
+        if (newSize < 200) newSize = 200;
+
+        i = (i - 1 + colors.length) % colors.length;
+
+        balloon.css({
+            width: newSize + "px",
+            height: newSize + "px",
+            backgroundColor: colors[i]
+        });
+    });
+});
+  </script>
+  <style>
+    body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    }
+
+#balloon {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  </style>
 </head>
 <body>
 	<div id="balloon"></div>
